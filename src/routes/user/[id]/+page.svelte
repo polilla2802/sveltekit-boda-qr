@@ -5,7 +5,11 @@
 	// Use the `$page` store to get the data returned by the load function
 	const { user } = $page.data.user;
 
-	const userId = user.id;
+	const userId: number = user.id;
+
+	let delay: number = import.meta.env.MODE === 'development'
+			? 1000
+			: 1800;
 
 	let qrCode: string;
 	let qrCodeLoading: string =
@@ -31,7 +35,7 @@
 		console.log('base url', $page.url.origin);
 		setTimeout(() => {
 			getQRCode();
-		}, 2500); // 2500 milliseconds (2.5 seconds) delay
+		}, delay); // 2500 milliseconds (2.5 seconds) delay
 	});
 </script>
 
