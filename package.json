@@ -9,7 +9,17 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"prisma:pull:dev": "dotenv -e .env.development -- prisma db pull",
+		"prisma:pull:prod": "dotenv -e .env.production -- prisma db pull",
+		"prisma:generate:dev": "dotenv -e .env.development -- prisma generate",
+		"prisma:generate:prod": "dotenv -e .env.production -- prisma generate",
+		"prisma:migrate:dev": "dotenv -e .env.development -- prisma migrate dev --create-only",
+		"prisma:migrate:prod": "dotenv -e .env.production -- prisma migrate deploy",
+		"prisma:reset:dev": "dotenv -e .env.development -- prisma migrate reset",
+		"prisma:reset:prod": "dotenv -e .env.production -- prisma migrate reset",
+		"prisma:seed:dev": "dotenv -e .env.development -- tsx prisma/seed.ts",
+		"prisma:seed:prod": "dotenv -e .env.production -- tsx prisma/seed.ts"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
@@ -19,15 +29,21 @@
 		"globals": "^15.0.0",
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.1.2",
+		"prisma": "^5.15.0",
 		"svelte": "^4.2.7",
 		"svelte-check": "^3.6.0",
 		"tslib": "^2.4.1",
+		"tsx": "^4.15.2",
 		"typescript": "^5.0.0",
 		"vite": "^5.0.3"
 	},
 	"type": "module",
 	"dependencies": {
+		"@prisma/client": "^5.15.0",
 		"dotenv": "^16.4.5",
 		"npm": "^10.2.4"
+	},
+	"prisma": {
+		"seed": "tsx prisma/seed.ts"
 	}
 }
