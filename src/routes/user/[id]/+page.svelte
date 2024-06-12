@@ -31,7 +31,7 @@
 		console.log('base url', $page.url.origin);
 		setTimeout(() => {
 			getQRCode();
-		}, 1000); // 2000 milliseconds (2 seconds) delay
+		}, 2500); // 2500 milliseconds (2.5 seconds) delay
 	});
 </script>
 
