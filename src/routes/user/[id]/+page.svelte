@@ -8,10 +8,12 @@
 	const userId = user.id;
 
 	let qrCode: string;
+	let qrCodeLoading: string =
+		'https://firebasestorage.googleapis.com/v0/b/cartas-a-bris.appspot.com/o/qr%2Fqr-loading.gif?alt=media&token=9de90db0-b6f6-4f4d-8970-b8e7f24afcf7';
 
 	// Construct the base URL based on environment
 	const baseUrl: string =
-	import.meta.env.MODE === 'development'
+		import.meta.env.MODE === 'development'
 			? 'http://localhost:3000'
 			: 'https://sveltekit-boda-qr.vercel.app';
 
@@ -46,10 +48,19 @@
 	{/if}
 	<br />
 	{#if qrCode}
-		<img src={qrCode} width="150" height="150" alt="QR code" />
+		<div class="qr-container">
+			<img src={qrCode} width="150" height="150" alt="QR code" />
+		</div>
+	{:else}
+		<img src={qrCodeLoading} width="150" height="150" alt="QR code" />
 	{/if}
 </main>
 
 <style>
-	/* Add your styles here */
+	.qr-container{
+		background-color:white;
+		padding: 20px;
+		width: 150px;
+		height: 150px;
+	}
 </style>
