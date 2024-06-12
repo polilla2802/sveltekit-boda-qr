@@ -9,12 +9,17 @@
 
 	let qrCode: string;
 
+	// Construct the base URL based on environment
+	const baseUrl: string =
+	import.meta.env.MODE === 'development'
+			? 'http://localhost:3000'
+			: 'https://sveltekit-boda-qr.vercel.app';
+
+	const QR_API_URL: string = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=';
+
 	async function getQRCode() {
 		try {
-			const response = await fetch(
-				`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://sveltekit-boda-qr.vercel.app/api/user/${userId}` +
-					user.id
-			);
+			const response = await fetch(`${QR_API_URL}${baseUrl}/api/user/${userId}` + user.id);
 			qrCode = response.url;
 		} catch (error) {
 			console.log(error);
