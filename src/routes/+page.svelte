@@ -24,7 +24,7 @@
 		{#each users as user}
 			<!-- Map frames to display images -->
 			<div class="flex flex-col">
-				<p>Usuario: <b><i>{user.userName}</i></b></p>
+				<a href="/user/{user.id}"><p>Usuario: <b><i>{user.userName}</i></b></p></a>
 				<p>Nombre: <b><i>{user.name}</i></b></p>
 				<p>Correo: <b><i>{user.email}</i></b></p>
 			</div>
