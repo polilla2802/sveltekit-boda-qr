@@ -19,7 +19,7 @@
 
 	async function getQRCode() {
 		try {
-			const response = await fetch(`${QR_API_URL}${baseUrl}/api/user/${userId}`);
+			const response = await fetch(`${QR_API_URL}${baseUrl}/user/${userId}`);
 			qrCode = response.url;
 		} catch (error) {
 			console.log(error);
