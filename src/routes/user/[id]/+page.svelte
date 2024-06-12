@@ -11,11 +11,8 @@
 	let qrCodeLoading: string =
 		'https://firebasestorage.googleapis.com/v0/b/cartas-a-bris.appspot.com/o/qr%2Fqr-loading.gif?alt=media&token=9de90db0-b6f6-4f4d-8970-b8e7f24afcf7';
 
-	// Construct the base URL based on environment
-	const baseUrl: string =
-		import.meta.env.MODE === 'development'
-			? 'http://localhost:3000'
-			: 'https://sveltekit-boda-qr.vercel.app';
+	// Construct the base URL based on page url origin
+	const baseUrl: string = $page.url.origin;
 
 	const QR_API_URL: string = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=';
 
@@ -31,7 +28,10 @@
 	// Optional: If you need to perform any action on mount
 	onMount(() => {
 		console.log('Component has mounted', user);
-		getQRCode();
+		console.log('base url', $page.url.origin);
+		setTimeout(() => {
+			getQRCode();
+		}, 1000); // 2000 milliseconds (2 seconds) delay
 	});
 </script>
 
@@ -57,8 +57,8 @@
 </main>
 
 <style>
-	.qr-container{
-		background-color:white;
+	.qr-container {
+		background-color: white;
 		padding: 20px;
 		width: 150px;
 		height: 150px;
